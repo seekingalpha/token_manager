@@ -105,7 +105,9 @@ class TokenManager
     url = @trusted_issuers.dig(iss, 'url')
     raise(RetrievePublicKeyError, "Add trusted_issuers: { url: 'https://my_app.com/public_key_url' }") unless url
 
-    response = Curl.get(@trusted_issuers.dig(iss, 'url'), kid: kid)
+    response = Curl.get(@trusted_issuers.dig(iss, 'url'), kid: kid) do |c|
+      c.headers.merge!('User-Agent' => @service_name)
+    end
     unless response.response_code.in?(200..299)
       raise(RetrievePublicKeyError,
             "Can't retrieve public_key from #{response.url}. Response code: #{response.response_code}")
