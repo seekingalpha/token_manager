@@ -37,7 +37,7 @@ Gem::Specification.new do |spec|
   # Uncomment to register a new dependency of your gem
   spec.add_dependency 'activesupport'
   spec.add_dependency 'curb'
-  spec.add_dependency 'jwt', '~> 2.0'
+  spec.add_dependency 'jwt', '>= 2.0'
   spec.add_dependency 'redis'
 
   # For more information and examples about making a new gem, check out our
